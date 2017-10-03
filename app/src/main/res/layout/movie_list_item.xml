@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+  <ImageView
+      android:id="@+id/movie_item_img"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:adjustViewBounds="true"
+      android:scaleType="fitCenter"
+      android:src="@mipmap/ic_launcher_foreground"
+
+      android:contentDescription="@string/movieposter_contentDesc"
+      />
+  <TextView
+      android:id="@+id/movie_item_tv"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:background="@color/background_tint_movie_item_tv"
+      android:gravity="center"
+      android:textColor="@color/movie_item_tv_text_color"
+      android:textSize="15sp"
+      android:fontFamily="sans-serif"
+      tools:text="@string/movie_item_tv_dummy_text"
+      />
+
+
+</RelativeLayout>

@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">PopularMovies1</string>
+  <string name="movie_item_tv_dummy_text">Star Wars: The Force Awakens</string>
+  <string name="pop_sort">Sort By: Popular</string>
+  <string name="rating_sort">Sort By: User Ratings</string>
+  <string name="sort_title">Sort</string>
+  <string name="movieposter_contentDesc">moviePoster</string>
+</resources>
