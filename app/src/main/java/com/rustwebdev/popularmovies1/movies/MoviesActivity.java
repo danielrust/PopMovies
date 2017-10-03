@@ -1,24 +1,28 @@
 package com.rustwebdev.popularmovies1.movies;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.transition.Explode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.rustwebdev.popularmovies1.Constants;
 import com.rustwebdev.popularmovies1.R;
 import com.rustwebdev.popularmovies1.data.Injector;
 import com.rustwebdev.popularmovies1.models.Movie;
+import com.rustwebdev.popularmovies1.movie.MovieActivity;
 import java.util.ArrayList;
 
-
-
-public class MoviesActivity extends AppCompatActivity implements MoviesContract.View {
+public class MoviesActivity extends Activity implements MoviesContract.View {
   private static final String LOG_TAG = MoviesActivity.class.getSimpleName();
   @BindView(R.id.movies_rv) RecyclerView movies_rv;
+  @BindView(R.id.pb) ProgressBar pb;
   MenuItem popMenuItem;
   MenuItem ratingMenuItem;
   private MoviesAdapter moviesAdapter;
@@ -29,7 +33,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_movies);
-
+    getWindow().setExitTransition(new Explode());
     ButterKnife.bind(this);
 
     moviesPresenter = new MoviesPresenter(this, Injector.provideMovieService());
@@ -60,22 +64,27 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
   }
 
   private MoviesAdapter.MovieItemListener itemListener = new MoviesAdapter.MovieItemListener() {
-    @Override public void onMovieClick(long id) {
-      Log.d(LOG_TAG, String.valueOf(id));
+    @Override public void onMovieClick(Movie movie, ImageView imgView) {
+      Intent intent = new Intent(MoviesActivity.this, MovieActivity.class);
+      intent.putExtra("movie", movie);
+      ActivityOptions options = ActivityOptions
+          .makeSceneTransitionAnimation(MoviesActivity.this, imgView , "movieImgTrans");
+
+      startActivity(intent, options.toBundle());
     }
   };
 
   @Override protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putParcelableArrayList("movieList", movieList);
-    outState.putInt("currentSort",currentSort);
+    outState.putInt("currentSort", currentSort);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu, menu);
     popMenuItem = menu.findItem(R.id.sort_popular);
     ratingMenuItem = menu.findItem(R.id.sort_rating);
-    if (currentSort == 2){
+    if (currentSort == 2) {
       popMenuItem.setChecked(false);
       ratingMenuItem.setChecked(true);
     }
@@ -86,12 +95,18 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     int id = item.getItemId();
     switch (id) {
       case R.id.sort_popular:
+        if (currentSort == 1) {
+          break;
+        }
         moviesPresenter.initDataSet(Constants.SORT_POPULAR);
         popMenuItem.setChecked(true);
         ratingMenuItem.setChecked(false);
         currentSort = 1;
         break;
       case R.id.sort_rating:
+        if (currentSort == 2) {
+          break;
+        }
         moviesPresenter.initDataSet(Constants.SORT_RATING);
         popMenuItem.setChecked(false);
         ratingMenuItem.setChecked(true);

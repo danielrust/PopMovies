@@ -22,11 +22,15 @@ public class MoviesPresenter {
   }
 
   public void initDataSet(String sort) {
+
     service.getMovieResults(Constants.API_KEY, sort, "400").enqueue(new Callback<MovieResults>() {
       @Override public void onResponse(@NonNull Call<MovieResults> call,
           @NonNull Response<MovieResults> response) {
         ArrayList<Movie> movieList = response.body().getResults();
+        Log.d(LOG_TAG, movieList.toString());
+
         moviesView.showMovies(movieList);
+
       }
 
       @Override public void onFailure(@NonNull Call<MovieResults> call, @NonNull Throwable t) {

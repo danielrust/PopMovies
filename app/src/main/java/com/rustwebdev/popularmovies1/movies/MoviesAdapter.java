@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.rustwebdev.popularmovies1.Constants;
 import com.rustwebdev.popularmovies1.R;
 import com.rustwebdev.popularmovies1.models.Movie;
 import com.squareup.picasso.Picasso;
@@ -36,7 +37,7 @@ class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
     Movie movie = movies.get(position);
     holder.movieViewTv.setText(movie.getTitle());
     Picasso.with(context)
-        .load("http://image.tmdb.org/t/p/w185/" + movie.getPosterPath())
+        .load(Constants.IMG_PATH + movie.getPosterPath())
         .into(holder.movieViewImg);
   }
 
@@ -58,7 +59,7 @@ class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
     @Override public void onClick(View view) {
       Movie movie = getItem(getAdapterPosition());
-      this.itemListener.onMovieClick(movie.getId());
+      this.itemListener.onMovieClick(movie, movieViewImg);
     }
   }
 
@@ -72,6 +73,6 @@ class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
   }
 
   public interface MovieItemListener {
-    void onMovieClick(long id);
+    void onMovieClick(Movie movie, ImageView imageView);
   }
 }

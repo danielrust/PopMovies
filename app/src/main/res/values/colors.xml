@@ -5,4 +5,5 @@
   <color name="colorAccent">#F2BB05</color>
   <color name="background_tint_movie_item_tv">#4f000000</color>
   <color name="movie_item_tv_text_color">#FFFFFF</color>
+  <color name="black">#000000</color>
 </resources>
