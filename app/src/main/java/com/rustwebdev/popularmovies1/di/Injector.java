@@ -1,7 +1,7 @@
-package com.rustwebdev.popularmovies1.data;
+package com.rustwebdev.popularmovies1.di;
 
 import com.rustwebdev.popularmovies1.Constants;
-import com.rustwebdev.popularmovies1.MovieService;
+import com.rustwebdev.popularmovies1.data.MovieService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

@@ -3,7 +3,7 @@ package com.rustwebdev.popularmovies1.movies;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import com.rustwebdev.popularmovies1.Constants;
-import com.rustwebdev.popularmovies1.MovieService;
+import com.rustwebdev.popularmovies1.data.MovieService;
 import com.rustwebdev.popularmovies1.models.Movie;
 import com.rustwebdev.popularmovies1.models.MovieResults;
 import java.util.ArrayList;
@@ -27,10 +27,7 @@ public class MoviesPresenter {
       @Override public void onResponse(@NonNull Call<MovieResults> call,
           @NonNull Response<MovieResults> response) {
         ArrayList<Movie> movieList = response.body().getResults();
-        Log.d(LOG_TAG, movieList.toString());
-
         moviesView.showMovies(movieList);
-
       }
 
       @Override public void onFailure(@NonNull Call<MovieResults> call, @NonNull Throwable t) {

@@ -1,8 +1,10 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name">PopularMovies1</string>
   <string name="movie_item_tv_dummy_text">Star Wars: The Force Awakens</string>
-  <string name="pop_sort">Sort By: Popular</string>
-  <string name="rating_sort">Sort By: User Ratings</string>
-  <string name="sort_title">Sort</string>
+  <string name="pop_sort">Sort: Popular</string>
+  <string name="rating_sort">Sort: User Ratings</string>
+  <string name="sort_title" tools:keep="@string/sort_title">Sort</string>
   <string name="movieposter_contentDesc">moviePoster</string>
+  <string name="overview">In a small town in Maine, seven children known as The Losers Club come face to face with life problems, bullies and a monster that takes the shape of a clown called Pennywise.</string>
+  <string name="clickedmovieposterContentDesc">clickedMoviePoster</string>
 </resources>

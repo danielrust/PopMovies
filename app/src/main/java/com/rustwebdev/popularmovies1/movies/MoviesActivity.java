@@ -10,11 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.rustwebdev.popularmovies1.Constants;
 import com.rustwebdev.popularmovies1.R;
-import com.rustwebdev.popularmovies1.data.Injector;
+import com.rustwebdev.popularmovies1.di.Injector;
 import com.rustwebdev.popularmovies1.models.Movie;
 import com.rustwebdev.popularmovies1.movie.MovieActivity;
 import java.util.ArrayList;
@@ -60,15 +61,18 @@ public class MoviesActivity extends Activity implements MoviesContract.View {
   }
 
   @Override public void showErrorMessage() {
-
+    Toast.makeText(this,
+        "We're sorry, the service is unavailable right now. Please try again later.",
+        Toast.LENGTH_LONG).show();
   }
 
   private MoviesAdapter.MovieItemListener itemListener = new MoviesAdapter.MovieItemListener() {
     @Override public void onMovieClick(Movie movie, ImageView imgView) {
       Intent intent = new Intent(MoviesActivity.this, MovieActivity.class);
       intent.putExtra("movie", movie);
-      ActivityOptions options = ActivityOptions
-          .makeSceneTransitionAnimation(MoviesActivity.this, imgView , "movieImgTrans");
+      ActivityOptions options =
+          ActivityOptions.makeSceneTransitionAnimation(MoviesActivity.this, imgView,
+              "movieImgTrans");
 
       startActivity(intent, options.toBundle());
     }

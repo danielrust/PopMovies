@@ -14,16 +14,13 @@ import com.rustwebdev.popularmovies1.R;
 import com.rustwebdev.popularmovies1.models.Movie;
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by flanhelsinki on 10/2/17.
- */
-
-public class MovieActivity extends Activity implements MovieContract.View {
+public class MovieActivity extends Activity {
   Movie movie;
   @BindView(R.id.movie_img) ImageView movieImg;
   @BindView(R.id.movie_title) TextView movieTitle;
   @BindView(R.id.movie_year) TextView movieYear;
   @BindView(R.id.movie_rating) TextView movieRating;
+  @BindView(R.id.movie_overview) TextView movieOverview;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -34,14 +31,16 @@ public class MovieActivity extends Activity implements MovieContract.View {
     ButterKnife.bind(this);
     Picasso.with(this).load(Constants.IMG_PATH + movie.getPosterPath()).into(movieImg);
     movieTitle.setText(movie.getTitle());
+    String rating = movie.getVoteAverage() + Constants.VOTE_AVERAGE_CONCAT;
     movieYear.setText(movie.getReleaseDate().substring(0, 4));
-    movieRating.setText(movie.getVoteAverage().toString() + "/10");
+    movieRating.setText(rating);
+    movieOverview.setText(movie.getOverview());
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
-       ActivityCompat.finishAfterTransition(this);
+        ActivityCompat.finishAfterTransition(this);
         return true;
     }
     return super.onOptionsItemSelected(item);
