@@ -1,6 +1,7 @@
 package com.rustwebdev.popularmovies1.movies;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +21,13 @@ class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
   private List<Movie> movies;
   private MovieItemListener itemListener;
   private Context context;
+  private Drawable placeholder;
 
   public MoviesAdapter(Context context, List<Movie> movies, MovieItemListener itemListener) {
     this.context = context;
     this.movies = movies;
     this.itemListener = itemListener;
+    placeholder = context.getDrawable(R.mipmap.ic_launcher_foreground);
   }
 
   @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,6 +41,8 @@ class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
     holder.movieViewTv.setText(movie.getTitle());
     Picasso.with(context)
         .load(Constants.IMG_PATH + movie.getPosterPath())
+        .placeholder(placeholder)
+        .error(placeholder)
         .into(holder.movieViewImg);
   }
 

@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class MoviesActivity extends Activity implements MoviesContract.View {
   private static final String LOG_TAG = MoviesActivity.class.getSimpleName();
+  public static final String MOVIE_LIST_BUNDLE_KEY = "movieList";
+  public static final String CURRENT_SORT_BUNDLE_KEY = "currentSort";
   @BindView(R.id.movies_rv) RecyclerView movies_rv;
   @BindView(R.id.pb) ProgressBar pb;
   MenuItem popMenuItem;
@@ -40,9 +42,9 @@ public class MoviesActivity extends Activity implements MoviesContract.View {
     moviesPresenter = new MoviesPresenter(this, Injector.provideMovieService());
     moviesAdapter = new MoviesAdapter(this, new ArrayList<Movie>(0), itemListener);
     if (savedInstanceState != null) {
-      if (savedInstanceState.containsKey("movieList")) {
-        showMovies(savedInstanceState.<Movie>getParcelableArrayList("movieList"));
-        currentSort = savedInstanceState.getInt("currentSort");
+      if (savedInstanceState.containsKey(MOVIE_LIST_BUNDLE_KEY)) {
+        showMovies(savedInstanceState.<Movie>getParcelableArrayList(MOVIE_LIST_BUNDLE_KEY));
+        currentSort = savedInstanceState.getInt(CURRENT_SORT_BUNDLE_KEY);
       }
     } else {
       moviesPresenter.initDataSet(Constants.SORT_POPULAR);
@@ -61,9 +63,7 @@ public class MoviesActivity extends Activity implements MoviesContract.View {
   }
 
   @Override public void showErrorMessage() {
-    Toast.makeText(this,
-        "We're sorry, the service is unavailable right now. Please try again later.",
-        Toast.LENGTH_LONG).show();
+    Toast.makeText(this, Constants.RETROFIT_ERROR_MESSAGE, Toast.LENGTH_LONG).show();
   }
 
   private MoviesAdapter.MovieItemListener itemListener = new MoviesAdapter.MovieItemListener() {
@@ -72,7 +72,7 @@ public class MoviesActivity extends Activity implements MoviesContract.View {
       intent.putExtra("movie", movie);
       ActivityOptions options =
           ActivityOptions.makeSceneTransitionAnimation(MoviesActivity.this, imgView,
-              "movieImgTrans");
+              Constants.MOVIE_IMG_TRANS_SHARED_ELEMENT);
 
       startActivity(intent, options.toBundle());
     }
@@ -80,8 +80,8 @@ public class MoviesActivity extends Activity implements MoviesContract.View {
 
   @Override protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
-    outState.putParcelableArrayList("movieList", movieList);
-    outState.putInt("currentSort", currentSort);
+    outState.putParcelableArrayList(MOVIE_LIST_BUNDLE_KEY, movieList);
+    outState.putInt(CURRENT_SORT_BUNDLE_KEY, currentSort);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {

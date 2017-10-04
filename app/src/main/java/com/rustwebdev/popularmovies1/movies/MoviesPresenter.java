@@ -23,7 +23,7 @@ public class MoviesPresenter {
 
   public void initDataSet(String sort) {
 
-    service.getMovieResults(Constants.API_KEY, sort, "400").enqueue(new Callback<MovieResults>() {
+    service.getMovieResults(sort, Constants.API_KEY).enqueue(new Callback<MovieResults>() {
       @Override public void onResponse(@NonNull Call<MovieResults> call,
           @NonNull Response<MovieResults> response) {
         ArrayList<Movie> movieList = response.body().getResults();
