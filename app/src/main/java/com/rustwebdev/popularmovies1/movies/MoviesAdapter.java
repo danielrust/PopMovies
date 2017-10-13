@@ -1,6 +1,7 @@
 package com.rustwebdev.popularmovies1.movies;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,16 +13,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.rustwebdev.popularmovies1.Constants;
 import com.rustwebdev.popularmovies1.R;
+import com.rustwebdev.popularmovies1.data.DataUtils;
 import com.rustwebdev.popularmovies1.models.Movie;
 import com.squareup.picasso.Picasso;
 import java.util.List;
-
 
 class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
   private List<Movie> movies;
   private MovieItemListener itemListener;
   private Context context;
   private Drawable placeholder;
+  private Cursor mCursor;
 
   public MoviesAdapter(Context context, List<Movie> movies, MovieItemListener itemListener) {
     this.context = context;
@@ -37,17 +39,21 @@ class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
   }
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
-    Movie movie = movies.get(position);
-    holder.movieViewTv.setText(movie.getTitle());
+    mCursor.moveToPosition(position);
+    holder.movieViewTv.setText(mCursor.getString(DataUtils.COL_MOVIE_TITLE));
     Picasso.with(context)
-        .load(Constants.IMG_PATH + movie.getPosterPath())
+        .load(Constants.IMG_PATH + mCursor.getString(DataUtils.COL_MOVIE_POSTER))
         .placeholder(placeholder)
         .error(placeholder)
         .into(holder.movieViewImg);
   }
 
   @Override public int getItemCount() {
-    return movies.size();
+    if (null == mCursor) {
+      return 0;
+    } else {
+      return mCursor.getCount();
+    }
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -69,12 +75,23 @@ class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
   }
 
   private Movie getItem(int adapterPosition) {
-    return movies.get(adapterPosition);
+    mCursor.moveToPosition(adapterPosition);
+    return new Movie(mCursor.getInt(DataUtils.COL_MOVIE_ID),
+        mCursor.getDouble(DataUtils.COL_MOVIE_RATING), mCursor.getString(DataUtils.COL_MOVIE_TITLE),
+        mCursor.getString(DataUtils.COL_MOVIE_POSTER),
+        mCursor.getString(DataUtils.COL_MOVIE_OVERVIEW),
+        mCursor.getString(DataUtils.COL_MOVIE_RELEASE));
   }
 
   public void updateMovies(List<Movie> movies) {
     this.movies = movies;
     notifyDataSetChanged();
+  }
+
+  void swapCursor(Cursor newCursor) {
+    mCursor = newCursor;
+    notifyDataSetChanged();
+    //mEmptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
   }
 
   public interface MovieItemListener {

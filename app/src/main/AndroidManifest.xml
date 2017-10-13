@@ -3,6 +3,7 @@
     package="com.rustwebdev.popularmovies1">
 
   <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <application
       android:name=".MyApplication"
       android:allowBackup="true"
@@ -27,8 +28,10 @@
     <activity
         android:name=".movie.MovieActivity"
         android:parentActivityName=".movies.MoviesActivity"/>
-    <provider android:authorities="com.rustwebdev.popularmovies1" android:name="com.rustwebdev.popularmovies1.provider.MoviesProvider"/>
-
+    <provider android:authorities="com.rustwebdev.popularmovies1"
+        android:name="com.rustwebdev.popularmovies1.provider.MoviesProvider"
+        android:exported="false"
+    />
 
   </application>
 

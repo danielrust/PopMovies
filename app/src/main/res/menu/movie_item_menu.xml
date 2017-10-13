@@ -9,7 +9,7 @@
   <item
       android:id="@+id/share_trailer"
       android:icon="@drawable/ic_share_black_24dp"
-      android:title="Share"
-      app:showAsAction="always"
+      android:title="@string/share_item_title"
+      app:showAsAction="ifRoom"
   />
 </menu>

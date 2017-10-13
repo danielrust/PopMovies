@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Movie implements Parcelable {
   @SerializedName("vote_count") @Expose private Integer voteCount;
   @SerializedName("id") @Expose private Integer id;
@@ -23,6 +22,16 @@ public class Movie implements Parcelable {
   @SerializedName("adult") @Expose private Boolean adult;
   @SerializedName("overview") @Expose private String overview;
   @SerializedName("release_date") @Expose private String releaseDate;
+
+  public Movie(Integer id, Double voteAverage, String title, String posterPath,
+      String overview, String releaseDate) {
+    this.id = id;
+    this.voteAverage = voteAverage;
+    this.title = title;
+    this.posterPath = posterPath;
+    this.overview = overview;
+    this.releaseDate = releaseDate;
+  }
 
   public Integer getVoteCount() {
     return voteCount;

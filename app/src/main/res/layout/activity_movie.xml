@@ -86,7 +86,8 @@
 
     <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+    android:layout_marginBottom="10dp">
       <TextView android:id="@+id/review_header"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -104,7 +105,7 @@
       <ProgressBar android:id="@+id/review_pb"
           android:layout_width="20dp"
           android:layout_height="20dp"
-          android:layout_alignRight="@id/review_header"
+          android:layout_alignEnd="@id/review_header"
           android:layout_marginBottom="0dp" android:layout_marginLeft="0dp"
           android:layout_marginTop="2dp"
           app:layout_constraintBottom_toBottomOf="@+id/review_header"

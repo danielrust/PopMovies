@@ -3,10 +3,7 @@ package com.rustwebdev.popularmovies1.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by flanhelsinki on 1/26/16, Part of PopularMoviesRefinal
- * .
- */
+
 public class MovieTrailerResults {
   @SerializedName("id") @Expose private String id;
   @SerializedName("key") @Expose private String key;

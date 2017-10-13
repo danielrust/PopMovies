@@ -5,11 +5,6 @@ import android.os.Parcelable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by flanhelsinki on 10/6/16, Part of PopularMoviesRefinal
- * .
- */
-
 public class Review implements Parcelable {
 
   private final String id;

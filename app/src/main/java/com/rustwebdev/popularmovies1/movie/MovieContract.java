@@ -16,5 +16,7 @@ public interface MovieContract {
     void setIsFav(boolean b);
     void showTrailer(String key);
     void showReviews(List<Review> reviews);
+
+    void sendTrailerUrl(String key);
   }
 }

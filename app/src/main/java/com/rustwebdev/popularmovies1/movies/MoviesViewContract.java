@@ -4,7 +4,7 @@ import com.rustwebdev.popularmovies1.models.Movie;
 import java.util.ArrayList;
 
 
-public interface MoviesContract {
+public interface MoviesViewContract {
 
   interface View {
     void showMovies(ArrayList<Movie> movies);

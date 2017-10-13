@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +32,10 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class MovieActivity extends AppCompatActivity implements MovieContract.View {
+  private static final String LOG_TAG = MovieActivity.class.getSimpleName();
   Movie movie;
   MenuItem movieItemMenu;
+  MenuItem shareTrailerBtn;
   MoviePresenter moviePresenter;
   public boolean isFav;
   @BindView(R.id.movie_img) ImageView movieImg;
@@ -46,6 +50,7 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
   @BindView(R.id.review_pb) ProgressBar reviewPb;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    Log.d(LOG_TAG, "onCreateCalled");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_movie);
     movie = getIntent().getParcelableExtra("movie");
@@ -66,6 +71,7 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.movie_item_menu, menu);
     movieItemMenu = menu.findItem(R.id.add_favorite);
+    shareTrailerBtn = menu.findItem(R.id.share_trailer);
     changeFavIcon(isFav);
     return true;
   }
@@ -81,6 +87,9 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
         } else {
           moviePresenter.addFavorite(movie, this);
         }
+        break;
+      case R.id.share_trailer:
+        moviePresenter.getTrailerUrl(movie);
         break;
     }
     return super.onOptionsItemSelected(item);
@@ -109,7 +118,7 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
   }
 
   @Override public void showTrailer(String key) {
-    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + key));
+    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.YOUTUBE_URL_PREFIX + key));
     try {
       startActivity(Intent.createChooser(i, "Choose your preferred application to open video"));
     } catch (ActivityNotFoundException e) {
@@ -118,7 +127,7 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
   }
 
   @Override public void showReviews(List<Review> reviews) {
-    reviewPb.setVisibility(View.GONE);
+    reviewPb.setVisibility(View.INVISIBLE);
     if (!reviews.isEmpty()) {
       ReviewAdapter reviewAdapter = new ReviewAdapter(reviews);
       RecyclerView.LayoutManager mLayoutManager =
@@ -132,7 +141,24 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
     }
   }
 
+  @Override public void sendTrailerUrl(String key) {
+    String mimeType = "text/plain";
+    String title = "Send the trailer to a friend";
+    String youtubeUrl = Constants.YOUTUBE_URL_PREFIX + key;
+    Intent shareTrailerUrl = ShareCompat.IntentBuilder.from(this)
+        .setChooserTitle(title)
+        .setType(mimeType)
+        .setText("Check out this awesome trailer for " + movie.getTitle() + "! " + youtubeUrl)
+        .getIntent();
+    startActivity(shareTrailerUrl);
+  }
+
   @OnClick(R.id.trailer_btn) public void viewTrailer() {
     moviePresenter.playTrailer(movie);
+  }
+
+  @Override protected void onStop() {
+    super.onStop();
+    reviewPb.setVisibility(View.INVISIBLE);
   }
 }

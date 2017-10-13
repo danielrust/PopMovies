@@ -13,4 +13,5 @@
   <string name="play_trailer_btn_txt">Play Trailer</string>
   <string name="reviews_header_text">Reviews</string>
   <string name="empty_list_string">There are no reviews for this movie yet.</string>
+  <string name="share_item_title">Share</string>
 </resources>

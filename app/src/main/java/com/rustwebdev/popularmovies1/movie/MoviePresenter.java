@@ -92,6 +92,22 @@ public class MoviePresenter {
     });
   }
 
+  public void getTrailerUrl(Movie movie) {
+    service.getTrailer(movie.getId(), Constants.API_KEY).enqueue(new Callback<TrailerResults>() {
+      @Override
+      public void onResponse(Call<TrailerResults> call, Response<TrailerResults> response) {
+        TrailerResults tr = response.body();
+        List<MovieTrailerResults> mtr = tr.getResults();
+        String key = mtr.get(0).getKey();
+        movieView.sendTrailerUrl(key);
+      }
+
+      @Override public void onFailure(Call<TrailerResults> call, Throwable t) {
+        Log.d(LOG_TAG, "Retrofit has failed: " + t.getMessage());
+      }
+    });
+  }
+
   public void getReviews(Movie movie) {
     service.getReviews(movie.getId(), Constants.API_KEY).enqueue(new Callback<ReviewsResults>() {
       @Override

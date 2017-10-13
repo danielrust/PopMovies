@@ -10,5 +10,6 @@ public class Constants {
   public static final String MOVIE_IMG_TRANS_SHARED_ELEMENT = "movieImgTrans";
   public static final String RETROFIT_ERROR_MESSAGE =
       "We're sorry, the service is unavailable right now. Please try again later.";
+  public static final String YOUTUBE_URL_PREFIX = "http://www.youtube.com/watch?v=";
 }
 
