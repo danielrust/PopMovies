@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/review_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/review_item_ll_margin_btm"
+    android:layout_marginLeft="@dimen/review_item_ll_margin_left"
+    android:layout_marginRight="@dimen/review_item_ll_margin_right"
+    android:layout_marginStart="@dimen/review_item_ll_margin_top"
+    android:orientation="vertical"
+>
+
+  <TextView
+
+      android:id="@+id/reviewName"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      tools:text="Hello From Cleveland"
+  />
+  <TextView
+
+      android:id="@+id/reviewText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      tools:text="There's no relative direction in the vastness of space, a Starfleet high mucky-muck tells Enterprise Captain James T. Kirk (Chris Pine) in Star Trek Beyond. There's only you.She's asking him whether he wants to give up his captain's seat for a chance at a powerful desk job on the eve of his thirtieth birthday, a year younger than his father was when he died. Her language is meant to spur Kirk to look inward, and for a moment we might hope that he will, and that the film will look inward with him. "
+
+  />
+</LinearLayout>
