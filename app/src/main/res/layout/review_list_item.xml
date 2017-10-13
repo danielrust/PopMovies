@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/review_item_ll_margin_btm"
-    android:layout_marginLeft="@dimen/review_item_ll_margin_left"
-    android:layout_marginRight="@dimen/review_item_ll_margin_right"
-    android:layout_marginStart="@dimen/review_item_ll_margin_top"
+    android:layout_marginStart="@dimen/review_item_ll_margin_left"
+    android:layout_marginEnd="@dimen/review_item_ll_margin_right"
     android:orientation="vertical"
 >
 
