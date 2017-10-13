@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -42,6 +43,7 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
   @BindView(R.id.trailer_btn) Button trailerBtn;
   @BindView(R.id.review_recycler_view) RecyclerView reviewRv;
   @BindView(R.id.empty_list) TextView emptyListTv;
+  @BindView(R.id.review_pb) ProgressBar reviewPb;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -116,6 +118,7 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
   }
 
   @Override public void showReviews(List<Review> reviews) {
+    reviewPb.setVisibility(View.GONE);
     if (!reviews.isEmpty()) {
       ReviewAdapter reviewAdapter = new ReviewAdapter(reviews);
       RecyclerView.LayoutManager mLayoutManager =
@@ -132,5 +135,4 @@ public class MovieActivity extends AppCompatActivity implements MovieContract.Vi
   @OnClick(R.id.trailer_btn) public void viewTrailer() {
     moviePresenter.playTrailer(movie);
   }
-
 }
