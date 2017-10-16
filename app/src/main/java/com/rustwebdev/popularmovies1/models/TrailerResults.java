@@ -7,9 +7,9 @@ import java.util.List;
 
 public class TrailerResults {
   @Expose
-  private final List<MovieTrailerResults> results = new ArrayList<>();
+  private final List<Trailer> results = new ArrayList<>();
 
-  public List<MovieTrailerResults> getResults() {
+  public List<Trailer> getResults() {
     return results;
   }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <!--<item format="integer" name="match_parent" type="dimen">-1</item>-->
-  <!--<item format="integer" name="wrap_content" type="dimen">-2</item>-->
+
   <integer name="gallery_columns">2</integer>
   <!--<dimen name="custom_wrap_content">-2</dimen>-->
   <!--<integer name="custom_wrap_content">-2</integer>-->
@@ -13,10 +12,8 @@
 
   <dimen name="layout_height">@dimen/match_parent</dimen>
   <dimen name="movie_view_details_ll">@dimen/wrap_content</dimen>
-  <dimen name="review_item_ll_margin_top">10dp</dimen>
   <dimen name="review_item_ll_margin_left">10dp</dimen>
   <dimen name="review_item_ll_margin_right">10dp</dimen>
   <dimen name="review_item_ll_margin_btm">20dp</dimen>
-  <dimen name="activity_movie_emptyList_margin_top">10dp</dimen>
 
 </resources>

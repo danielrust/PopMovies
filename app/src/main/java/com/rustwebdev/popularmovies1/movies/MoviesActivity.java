@@ -85,6 +85,8 @@ public class MoviesActivity extends AppCompatActivity
     Toast.makeText(this, Constants.RETROFIT_ERROR_MESSAGE, Toast.LENGTH_LONG).show();
   }
 
+
+
   private MoviesAdapter.MovieItemListener itemListener = new MoviesAdapter.MovieItemListener() {
     @Override public void onMovieClick(Movie movie, ImageView imgView) {
       Intent intent = new Intent(MoviesActivity.this, MovieActivity.class);
@@ -160,9 +162,6 @@ public class MoviesActivity extends AppCompatActivity
     return true;
   }
 
-  @Override protected void onResume() {
-    super.onResume();
-  }
 
   @Override public Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new CursorLoader(this, uri, DataUtils.MOVIE_COLUMNS, null, null, null);

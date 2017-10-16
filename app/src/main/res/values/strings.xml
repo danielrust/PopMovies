@@ -5,7 +5,10 @@
   <string name="rating_sort">User Ratings</string>
   <string name="sort_title" tools:keep="@string/sort_title">Sort</string>
   <string name="movieposter_contentDesc">moviePoster</string>
-  <string name="overview">In a small town in Maine, seven children known as The Losers Club come face to face with life problems, bullies and a monster that takes the shape of a clown called Pennywise.</string>
+  <string name="overview">In a small town in Maine, seven children known as The Losers Club come
+    face to face with life problems, bullies and a monster that takes the shape of a clown called
+    Pennywise.
+  </string>
   <string name="clickedmovieposterContentDesc">clickedMoviePoster</string>
   <string name="add_favorite">Add Favorite</string>
   <string name="sort_menu_contDesc">Sort Menu</string>
@@ -14,4 +17,11 @@
   <string name="reviews_header_text">Reviews</string>
   <string name="empty_list_string">There are no reviews for this movie yet.</string>
   <string name="share_item_title">Share</string>
+  <string name="empty_trailer_list_string">There are no trailers for movie film yet.
+  </string>
+  <string name="trailer_text">View %1$s</string>
+  <string name="tools_movie_text">Star Wars: The Wrath of Khan</string>
+  <string name="tools_movie_year">2017</string>
+  <string name="tools_movie_rating">4.8/10</string>
+  <string name="tools_play_trailer_btn">PLAY TRAILER</string>
 </resources>

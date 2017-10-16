@@ -1,6 +1,8 @@
 package com.rustwebdev.popularmovies1.movie;
 
+import com.rustwebdev.popularmovies1.models.Trailer;
 import com.rustwebdev.popularmovies1.models.Review;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,5 +20,7 @@ public interface MovieContract {
     void showReviews(List<Review> reviews);
 
     void sendTrailerUrl(String key);
+
+    void showTrailers(ArrayList<Trailer> mtr);
   }
 }

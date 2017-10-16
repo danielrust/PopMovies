@@ -72,8 +72,4 @@ public class MoviesPresenter {
           }
         });
   }
-
-  public void getFavorites() {
-
-  }
 }

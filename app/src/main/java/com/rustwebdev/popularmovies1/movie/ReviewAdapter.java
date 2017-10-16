@@ -1,6 +1,7 @@
 package com.rustwebdev.popularmovies1.movie;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,12 +47,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
     Review review = reviews.get(position);
     viewHolder.reviewName.setText(review.getAuthor());
     viewHolder.reviewText.setText(review.getContent());
+    Log.d(LOG_TAG,position + " Position was called");
+
   }
 
   @Override public int getItemCount() {
     return reviews.size();
   }
-
-
-  }
+}
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trailer_list_item_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/trailer_btn"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:gravity="center"
+    android:layout_marginEnd="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginBottom="5dp"
+>
+
+  <TextView android:id="@+id/trailer_btn_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:drawablePadding="10dp"
+      android:drawableStart="@drawable/ic_play_circle_outline_black_24dp"
+      android:gravity="center|center_horizontal|center_vertical"
+      android:text="@string/tools_play_trailer_btn"
+      style="@style/Base.TextAppearance.AppCompat.Button"/>
+
+
+</LinearLayout>

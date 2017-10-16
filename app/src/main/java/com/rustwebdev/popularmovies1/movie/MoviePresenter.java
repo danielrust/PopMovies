@@ -8,11 +8,12 @@ import com.rustwebdev.popularmovies1.Constants;
 import com.rustwebdev.popularmovies1.data.DataUtils;
 import com.rustwebdev.popularmovies1.data.MovieService;
 import com.rustwebdev.popularmovies1.models.Movie;
-import com.rustwebdev.popularmovies1.models.MovieTrailerResults;
+import com.rustwebdev.popularmovies1.models.Trailer;
 import com.rustwebdev.popularmovies1.models.Review;
 import com.rustwebdev.popularmovies1.models.ReviewsResults;
 import com.rustwebdev.popularmovies1.models.TrailerResults;
 import com.rustwebdev.popularmovies1.provider.MoviesContract;
+import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,12 +77,28 @@ public class MoviePresenter {
     return isFav;
   }
 
+  public void getTrailers(Movie movie) {
+    service.getTrailer(movie.getId(), Constants.API_KEY).enqueue(new Callback<TrailerResults>() {
+      @Override
+      public void onResponse(Call<TrailerResults> call, Response<TrailerResults> response) {
+        TrailerResults tr = response.body();
+        ArrayList<Trailer> mtr = (ArrayList<Trailer>) tr.getResults();
+        movieView.showTrailers(mtr);
+        Log.d(LOG_TAG, mtr.toString());
+      }
+
+      @Override public void onFailure(Call<TrailerResults> call, Throwable t) {
+        Log.d(LOG_TAG, "Retrofit has failed: " + t.getMessage());
+      }
+    });
+  }
+
   public void playTrailer(Movie movie) {
     service.getTrailer(movie.getId(), Constants.API_KEY).enqueue(new Callback<TrailerResults>() {
       @Override
       public void onResponse(Call<TrailerResults> call, Response<TrailerResults> response) {
         TrailerResults tr = response.body();
-        List<MovieTrailerResults> mtr = tr.getResults();
+        List<Trailer> mtr = tr.getResults();
         String key = mtr.get(0).getKey();
         movieView.showTrailer(key);
       }
@@ -97,7 +114,7 @@ public class MoviePresenter {
       @Override
       public void onResponse(Call<TrailerResults> call, Response<TrailerResults> response) {
         TrailerResults tr = response.body();
-        List<MovieTrailerResults> mtr = tr.getResults();
+        List<Trailer> mtr = tr.getResults();
         String key = mtr.get(0).getKey();
         movieView.sendTrailerUrl(key);
       }
@@ -115,6 +132,7 @@ public class MoviePresenter {
         ReviewsResults reviewsResults = response.body();
         List<Review> reviews = reviewsResults.getResults();
         movieView.showReviews(reviews);
+        Log.d(LOG_TAG, reviews.toString());
       }
 
       @Override public void onFailure(Call<ReviewsResults> call, Throwable t) {

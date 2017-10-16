@@ -10,5 +10,6 @@ public interface MoviesViewContract {
     void showMovies(ArrayList<Movie> movies);
 
     void showErrorMessage();
+
   }
 }

@@ -1,7 +1,7 @@
 <resources xmlns:android="http://schemas.android.com/tools">
 
   <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat">
+  <style name="AppTheme" parent="Base.Theme.AppCompat">
     <!-- Customize your theme here. -->
     <item name="android:colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimary">@color/colorPrimary</item>
@@ -26,5 +26,17 @@
     <item name="android:background">?android:attr/actionBarItemBackground</item>
     <item name="android:contentDescription">@string/sort_menu_contDesc</item>
     <item name="android:layout_marginRight">5dp</item>
+  </style>
+  <style name="roboto_regular_textview" parent="@android:style/Widget.TextView">
+    <item name="android:fontFamily">sans-serif</item>
+  </style>
+
+  <style name="roboto_medium_textview" parent="@android:style/Widget.TextView">
+    <item name="android:fontFamily">sans-serif</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="roboto_light_textview" parent="@android:style/Widget.TextView">
+    <item name="android:fontFamily">sans-serif-light</item>
   </style>
 </resources>
