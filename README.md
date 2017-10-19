@@ -14,3 +14,8 @@ Butterknife
 Picasso 
 
 Stetho
+
+![screenshot](/popmovies_ss1.png?raw=true "Screenshot1")
+![screenshot](/popmovies_ss2.png?raw=true "Screenshot2")
+![screenshot](/popmovies_ss3.png?raw=true "Screenshot3")
+![screenshot](/popmovies_ss4.png?raw=true "Screenshot4")
