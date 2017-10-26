@@ -4,6 +4,9 @@ Welcome to my PopularMovies1 Project! This project was to show off and demonstra
 ## API Key
 Please insert your own TMDB API Key into the API_KEY field found in Constants.java
 
+## Design
+I was given general guidelines and requirements, but the design and styling of this app is my own.
+
 ## Included Libraries:
 Android Support 
 
